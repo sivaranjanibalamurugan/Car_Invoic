@@ -17,6 +17,5 @@ namespace CarInvoiceGeneration
         {
             this.exception = exception;
         }
-
     }
 }

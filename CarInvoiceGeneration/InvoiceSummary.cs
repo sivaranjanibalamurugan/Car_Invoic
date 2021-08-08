@@ -31,6 +31,5 @@ namespace CarInvoiceGeneration
             InvoiceSummary inputedObject = (InvoiceSummary)obj;
             return this.numberOfRides == inputedObject.numberOfRides && this.totalFare == inputedObject.totalFare && this.averageFare == inputedObject.averageFare;
         }
-
-    }
+   }
 }
