@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CarInvoiceGeneration
 {
-    class InvoiceGenerator
+    public class InvoiceGenerator
     {
         private readonly int COST_PER_KM;
         private readonly int COST_PER_MIN;
@@ -20,7 +20,7 @@ namespace CarInvoiceGeneration
             this.MIN_FARE = 5;
         }
 
-        public double CalculateFare(double distance, double timeInMin)
+        public double CalculateFare(double distance, int timeInMin)
         {
             //initialize the total fare
             double totalFare = 0;
@@ -39,6 +39,26 @@ namespace CarInvoiceGeneration
             }
             return Math.Max(MIN_FARE, totalFare);
         }
+        //passing the ride object as array
+        //calculate total fair of each rides
+        public InvoiceSummary CalcualateTotalFair(Rides[] rides)
+        {
+            double totalFare = 0;
+            try
+            {
+                //looping and finding the fair for each ride
+                foreach (Rides r in rides)
+                {
+                    totalFare += CalculateFare(r.distance, r.time);
+                }
+            }
+            //if null object is passed
+            catch (InvoiceException)
+            {
+                throw new InvoiceException(InvoiceException.ExceptionType.NO_RIDES_FOUND, "No ride available");
+            }
+            return new InvoiceSummary(rides.Length, totalFare);
+        }
+
     }
 }
-
