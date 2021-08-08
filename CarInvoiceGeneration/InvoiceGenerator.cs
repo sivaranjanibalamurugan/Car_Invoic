@@ -11,24 +11,13 @@ namespace CarInvoiceGeneration
         private readonly int COST_PER_KM;
         private readonly int COST_PER_MIN;
         private readonly int MIN_FARE;
-        RideType ridetype;
 
         //initialize the readonly value through constructor
-        public InvoiceGenerator(RideType ridetype)
+        public InvoiceGenerator()
         {
-            this.ridetype = ridetype;
-            if (this.ridetype.Equals(RideType.PREMIUM))
-            {
-                this.COST_PER_KM = 15;
-                this.COST_PER_MIN = 2;
-                this.MIN_FARE = 20;
-            }
-            if (this.ridetype.Equals(RideType.NORMAL))
-            {
-                this.COST_PER_KM = 10;
-                this.COST_PER_MIN = 1;
-                this.MIN_FARE = 10;
-            }
+            this.COST_PER_KM = 10;
+            this.COST_PER_MIN = 1;
+            this.MIN_FARE = 5;
         }
 
         public double CalculateFare(double distance, int timeInMin)
@@ -52,7 +41,7 @@ namespace CarInvoiceGeneration
         }
         //passing the ride object as array
         //calculate total fair of each rides
-        public InvoiceSummary CalcualateTotalFair(Rides[] rides)
+        public double CalcualateTotalFair(Rides[] rides)
         {
             double totalFare = 0;
             try
@@ -68,7 +57,11 @@ namespace CarInvoiceGeneration
             {
                 throw new InvoiceException(InvoiceException.ExceptionType.NO_RIDES_FOUND, "No ride available");
             }
-            return new InvoiceSummary(rides.Length, totalFare);
+            return totalFare;
         }
+
     }
 }
+
+
+
