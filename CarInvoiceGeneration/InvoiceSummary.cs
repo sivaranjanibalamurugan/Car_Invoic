@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CarInvoiceGeneration
 {
-   public class InvoiceSummary
+    public class InvoiceSummary
     {
         public int numberOfRides;
         public double totalFare;
@@ -31,5 +31,5 @@ namespace CarInvoiceGeneration
             InvoiceSummary inputedObject = (InvoiceSummary)obj;
             return this.numberOfRides == inputedObject.numberOfRides && this.totalFare == inputedObject.totalFare && this.averageFare == inputedObject.averageFare;
         }
-   }
+    }
 }
